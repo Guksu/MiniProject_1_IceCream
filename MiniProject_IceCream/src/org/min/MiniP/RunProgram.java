@@ -19,11 +19,13 @@ public class RunProgram{
 	}
 	
 	public void menu() {
-		System.out.println("1. 월별 매출 확인");
+		System.out.println("------------------");
+		System.out.println("1. 매출 확인");
 		System.out.println("2. 판매량 입력 혹은 수정");
 		System.out.println("3. 매출비교");
 		System.out.println("4. 가격 혹은 원가 변경");
 		System.out.println("0. 프로그램 종료");
+		System.out.println("------------------");
 	}
 	
 	public void showSales() {
@@ -51,10 +53,12 @@ public class RunProgram{
 		else if(select1 == 2) {
 			System.out.print("확인할 월을 입력하세요 >>");
 			int select2 = (sc.nextInt());
+			
 			if( select2<=0 ||  select2>12) {
 				System.out.println("다시 입력하세요");
 				showSales();
-			}else {
+			}
+			else {
 				mintSalesVolume = monthSales.get(select2-1).getMintSalesVolume();
 				shootingSalesVolume = monthSales.get(select2-1).getShootingSalesVolume();
 				totalSales = monthSales.get(select2-1).getSales();
@@ -73,10 +77,12 @@ public class RunProgram{
 	public void inputSales() {
 		System.out.print("입력할 월을 입력하세요 >>");
 		int inputSelect = sc.nextInt();
+		
 		if(inputSelect<=0 || inputSelect>12) {
 			System.out.println("다시 입력하세요");
 			inputSales();
-		}else {
+		}
+		else {
 			System.out.print("민트아이스크림 판매량을 입력하세요 >>");
 			int mintSalesVolume = sc.nextInt();
 			System.out.print("슈팅스타 판매량을 입력하세요 >>");
@@ -93,10 +99,12 @@ public class RunProgram{
 		int selectMonth2 = sc.nextInt();
 		double selectMonth1Sales = 0;
 		double selectMonth2Sales = 0;
+		
 		if(selectMonth1<=0 || selectMonth1>12 || selectMonth2<=0 || selectMonth1>12 ||selectMonth1 == selectMonth2) {
 			System.out.println("다시 입력하세요");
 			compareSales();
-		}else {
+		}
+		else {
 			for(int i =0; i<monthSales.size(); i++) {
 				selectMonth1Sales = monthSales.get(selectMonth1-1).getSales();
 				selectMonth2Sales = monthSales.get(selectMonth2-1).getSales();
@@ -104,9 +112,11 @@ public class RunProgram{
 
 			if(selectMonth1Sales > selectMonth2Sales) {
 				System.out.println(selectMonth1+"월은 "+selectMonth2+"월보다 매출액이 ["+formatter.format(selectMonth1Sales-selectMonth2Sales)+"]원 더 많습니다.");
-			} else if(selectMonth1Sales < selectMonth2Sales) {
+			} 
+			else if(selectMonth1Sales < selectMonth2Sales) {
 				System.out.println(selectMonth2+"월은 "+selectMonth1+"월보다 매출액이 ["+formatter.format(selectMonth2Sales-selectMonth1Sales)+"]원 더 많습니다.");
-			} else if(selectMonth1Sales == selectMonth2Sales) {
+			} 
+			else if(selectMonth1Sales == selectMonth2Sales) {
 				System.out.println("두 월은 매출액이 ["+formatter.format(selectMonth1Sales)+"]원으로 같습니다");
 			}
 		}
@@ -116,6 +126,7 @@ public class RunProgram{
 		System.out.println("1. 가격변경");
 		System.out.println("2. 원가변경");
 		int select1 = sc.nextInt();
+		
 		if(select1 ==1 ) {
 			System.out.println("현재 민트 판매가는 : "+monthSales.get(0).getMintPrice()+"원 , 슈팅스타 판매가는 : "+monthSales.get(0).getShootingStarPrice()+"원 입니다.");
 			System.out.println("변경하실 판매가를 선택하세요");
@@ -127,13 +138,15 @@ public class RunProgram{
 				for(int i=0; i<monthSales.size(); i++) {
 					monthSales.get(i).setMintPrice(changeMintPrice);
 				}
-			} else if(select2 ==2) {
+			} 
+			else if(select2 ==2) {
 				System.out.println("변경할 가격을 입력하세요");
 				int changeShootingPrice = sc.nextInt();
 				for(int i=0; i<monthSales.size(); i++) {
 					monthSales.get(i).setShootingStarPrice(changeShootingPrice);
 				}
-			} else if(select2 == 3) {
+			}
+			else if(select2 == 3) {
 				System.out.println("변경할 민트와 슈팅스타의 가격을 순서대로 입력하세요");
 				int changeMintPrice = sc.nextInt();
 				int changeShootingPrice = sc.nextInt();
@@ -154,13 +167,15 @@ public class RunProgram{
 				for(int i=0; i<monthSales.size(); i++) {
 					monthSales.get(i).setMintExpense(changeMintExpense);
 				}
-			} else if(select2 ==2) {
+			} 
+			else if(select2 ==2) {
 				System.out.println("변경할 원가를 입력하세요");
 				int changeShootingExpense = sc.nextInt();
 				for(int i=0; i<monthSales.size(); i++) {
 					monthSales.get(i).setShootingStarExpense(changeShootingExpense);
 				}
-			} else if(select2 == 3) {
+			} 
+			else if(select2 == 3) {
 				System.out.println("변경할 민트와 슈팅스타의 원가를 순서대로 입력하세요");
 				int changeMintExpense = sc.nextInt();
 				int changeShootingExpense = sc.nextInt();
@@ -180,14 +195,15 @@ public class RunProgram{
 		sc.close();
 		System.exit(0);
 	}
-	
+
 	public void run() {
 		while(true) {
+
 			menu();
 			System.out.print("작업을 선택하세요 >>");
 			int choice = sc.nextInt();
 			sc.nextLine();
-			
+
 			switch(choice) {
 			case 1 : showSales(); break;
 			case 2 : inputSales(); break;
@@ -198,5 +214,4 @@ public class RunProgram{
 			}
 		}
 	}
-	
 }
